@@ -43,6 +43,7 @@ SELECT ROUND(AVG(LifeExpectancy), 2) AS Rata_Rata_Harapan_Hidup_di_Asia
  FROM country
  WHERE region='Eastern Africa';
 ````
+![image](https://github.com/user-attachments/assets/551fd217-d6a4-4f03-8aa2-ada87f6c8f83)
 
 
 
@@ -50,41 +51,55 @@ SELECT ROUND(AVG(LifeExpectancy), 2) AS Rata_Rata_Harapan_Hidup_di_Asia
 → Display the average population in countries with an area greater than 5 million km²!
 
 ````sql
-
-
+ SELECT AVG(Population) AS Average_Population
+ FROM country
+ WHERE SurfaceArea > 5000000
 ````
+![image](https://github.com/user-attachments/assets/b20d727c-d0e2-4c45-8fcf-9a54936cc127)
+
 
 **6. Tampilkan nama provinsi di Indonesia beserta populasinya yang memiliki populasi di atas 5 juta!**
 → Display the names of cities in Indonesia and their populations for those with a population above 5 million!
 
 ````sql
-
-
+SELECT Name, Population
+FROM city
+WHERE CountryCode = 'IDN' AND Population > 5000000;
 ````
+![image](https://github.com/user-attachments/assets/21361e7c-e904-4314-8714-8264318e1a71)
+
 
 **7. Ada berapa bahasa (unique) di dunia?**
 → How many unique languages are there in the world?
 
 ````sql
-
-
+SELECT COUNT(DISTINCT Language) AS Jumlah_Bahasa_di_Dunia
+FROM countrylanguage;
 ````
+![image](https://github.com/user-attachments/assets/df0dcc41-ed27-4826-9645-8016bee5f5d4)
+
 
 **8. Tampilkan bahasa-bahasa apa saja yang dipergunakan di Indonesia!**
 → Display the languages that are used in Indonesia!
 
 ````sql
-
-
+SELECT DISTINCT Language AS Bahasa_di_Indonesia
+FROM countrylanguage
+WHERE CountryCode='IDN';
 ````
+![image](https://github.com/user-attachments/assets/28b2a48e-a1e1-4752-8efb-8ead74315b9e)
+
 
 **9. Tampilkan GNP dari 5 negara di Asia yang populasinya di atas 100 juta penduduk!**
 → Display the GNP of 5 countries in Asia with populations over 100 million people!
 
 ````sql
-
-
+SELECT Name, GNP FROM country
+WHERE continent='Asia' AND population > 1e8
+LIMIT 5;
 ````
+![image](https://github.com/user-attachments/assets/d17e5bf7-3c6d-4463-8e45-6fab6b5d755d)
+
 
 **10. Tampilkan negara di Afrika yang memiliki SurfaceArea di atas 1.200.000!**
 → Display the countries in Africa with a surface area greater than 1,200,000!
