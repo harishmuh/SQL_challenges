@@ -1,4 +1,4 @@
-# SQL_challenges
+# **SQL concepts and challenges**
 A collection of SQL challenges and exercises in MySQL for data science teaching
 
 **Meeting 1: Fundamental concept of SQL and RDBMS**
