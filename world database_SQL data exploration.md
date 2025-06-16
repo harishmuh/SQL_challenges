@@ -1,4 +1,4 @@
-**Accessing the database world**
+**Accessing the database 'world'**
 
 ````sql
 USE world;
@@ -105,46 +105,72 @@ LIMIT 5;
 → Display the countries in Africa with a surface area greater than 1,200,000!
 
 ````sql
-
-
+SELECT Name   
+FROM country
+WHERE continent='Africa' AND SurfaceArea > 1200000;
 ````
+
+![image](https://github.com/user-attachments/assets/96e47989-2b81-4497-8c14-90ce32905dd6)
+
+
 
 **11. Tampilkan negara di Afrika yang memiliki huruf akhir 'i'!**
 → Display the countries in Africa whose names end with the letter 'i'!
 
 ````sql
-
-
+SELECT Name   
+FROM country
+WHERE continent='Africa' AND Name LIKE '%i';
 ````
+
+![image](https://github.com/user-attachments/assets/2e8705d0-c2fe-4839-84b4-ae412e3001ff)
+
 
 **12. Tampilkan jumlah negara di Asia yang sistem pemerintahannya adalah republik.**
 → Display the number of countries in Asia whose form of government is a republic.
 
 ````sql
-
-
+SELECT COUNT(Name) AS Banyaknya_Negara_Republik
+FROM country
+WHERE GovernmentForm='Republic' AND Continent='Asia';
 ````
+
+![image](https://github.com/user-attachments/assets/3fff92cd-3980-49c1-9dcd-b47b19212b8c)
+
 
 **13. Tampilkan jumlah negara di Eropa yang merdeka sebelum 1940!**
 → Display the number of countries in Europe that gained independence before 1940!
 
 ````sql
-
-
+SELECT COUNT(Name) AS Banyaknya_Negara
+FROM country
+WHERE IndepYear < 1940 AND Continent='Europe';
 ````
+
+![image](https://github.com/user-attachments/assets/b12a21e2-025f-49e4-8840-9b67e617f45e)
+
 
 **14. Tampilkan 5 nama kota yang berada di provinsi Jawa Barat!**
 → Display the names of 5 cities located in the West Java province!
 
 ````sql
-
-
+SELECT Name FROM city
+WHERE District='West Java'
+LIMIT 5;
 ````
+
+![image](https://github.com/user-attachments/assets/73b4a160-afbe-470e-a54f-f2bad7e47d3b)
+
 
 **15. Tampilkan 3 nama kota yang memiliki id genap di negara Jepang!**
 → Display the names of 3 cities with even IDs in Japan!
 
 ````sql
-
+SELECT *
+FROM city
+WHERE CountryCode='JPN' AND ID%2=0
+LIMIT 3;
 
 ````
+![image](https://github.com/user-attachments/assets/87c4c911-23a8-4526-a8da-5b0856c156a4)
+
