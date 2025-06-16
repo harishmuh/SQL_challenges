@@ -1,4 +1,4 @@
-**Accessing the database 'world'**
+**Accessing the database [world](https://dev.mysql.com/doc/world-setup/en/)**
 
 ````sql
 USE world;
