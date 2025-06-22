@@ -9,7 +9,7 @@
 # e.g., 'h_t' will match 'hat', 'hit', 'hut', 'hot', etc.
 
 USE world;
--- Show cities where District is 'England'
+-- Show cities where the district is 'England'
 SELECT * FROM city
 WHERE District = 'England';
 
@@ -240,7 +240,7 @@ SELECT
 	title,
     rating,
     CASE rating
-		WHEN 'PG' THEN 'Parental Guidance Suggested'
+	WHEN 'PG' THEN 'Parental Guidance Suggested'
         WHEN 'PG-13' THEN 'Parental Guidance Cautioned'
         WHEN 'G' THEN 'General Audience'
         WHEN 'R' THEN 'Restricted'
@@ -264,7 +264,7 @@ SELECT
 	title,
     rental_rate,
     CASE rental_rate
-		WHEN 0.99 THEN 'Economy'
+	WHEN 0.99 THEN 'Economy'
         WHEN 2.99 THEN 'Mass'
         ELSE 'Premium'
 	END AS rental_rate_description
