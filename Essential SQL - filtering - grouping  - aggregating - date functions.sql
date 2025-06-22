@@ -111,14 +111,14 @@ WHERE Continent='Asia';
 SELECT FORMAT(SUM(Population),0) FROM country
 WHERE Continent='Europe';
 
--- Count number of countries
+-- Count the number of countries
 SELECT COUNT(Name) FROM country;
 
 -- Count countries by continent
 SELECT Continent, COUNT(Name) FROM country
 GROUP BY Continent;
 
--- Same as above but ordered by count descending
+-- Same as above, but ordered by count descending
 SELECT Continent, COUNT(Name) FROM country
 GROUP BY Continent
 ORDER BY COUNT(Name) DESC;
@@ -143,7 +143,7 @@ HAVING COUNT(Name) > 50
 ORDER BY COUNT(Name) DESC;
 
 # GROUP BY + LIMIT + OFFSET
--- Show countries with more than 75 cities, sorted by avg population (4th-6th rows only)
+-- Show countries with more than 75 cities, sorted by average population (4th-6th rows only)
 SELECT CountryCode, FORMAT(AVG(Population),0), COUNT(Name) FROM city
 GROUP BY CountryCode
 HAVING COUNT(Name) > 75
@@ -153,8 +153,8 @@ LIMIT 3 OFFSET 3;
 -- Alternative using aliases
 SELECT 
 	CountryCode, 
-    FORMAT(AVG(Population),0) AS Avg_Population, 
-    COUNT(Name) AS Total_Cities
+    	FORMAT(AVG(Population),0) AS Avg_Population, 
+    	COUNT(Name) AS Total_Cities
 FROM city
 GROUP BY CountryCode
 HAVING Total_Cities > 75
@@ -238,7 +238,7 @@ END
 -- With expression
 SELECT
 	title,
-    rating,
+    	rating,
     CASE rating
 	WHEN 'PG' THEN 'Parental Guidance Suggested'
         WHEN 'PG-13' THEN 'Parental Guidance Cautioned'
@@ -262,7 +262,7 @@ FROM film;
 -- Rental rate description
 SELECT
 	title,
-    rental_rate,
+    	rental_rate,
     CASE rental_rate
 	WHEN 0.99 THEN 'Economy'
         WHEN 2.99 THEN 'Mass'
