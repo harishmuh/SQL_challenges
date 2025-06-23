@@ -1,4 +1,4 @@
-USE the world database
+**Accessing the [world](https://dev.mysql.com/doc/world-setup/en/)** database
 
 
 ````sql
@@ -12,6 +12,8 @@ SELECT COUNT(DISTINCT(Region)) AS Number_of_Regions
 FROM country;
 ````
 
+![image](https://github.com/user-attachments/assets/4e08f701-c877-4fbd-93f2-d33316b6c381)
+
 
 2. How many countries are in Africa? Rename the header as 'Number_of_Countries_in_Africa'.
 
@@ -21,6 +23,9 @@ SELECT COUNT(Name) AS Number_of_Countries_in_Africa
 FROM country
 WHERE continent='Africa';
 ````
+
+![image](https://github.com/user-attachments/assets/5d45eab8-c3cc-40ce-8173-412b338b5abe)
+
 
 
 3. Display the top 5 most populous countries. Rename headers to 'Country_Name' and 'Population'.
@@ -32,6 +37,7 @@ FROM country
 ORDER BY Population DESC
 LIMIT 5;
 ````
+![image](https://github.com/user-attachments/assets/874aad68-a84e-4829-843b-4dc8f8d00124)
 
 
 
@@ -45,6 +51,8 @@ GROUP BY Continent_Name
 ORDER BY Avg_Life_Expectancy;
 ````
 
+![image](https://github.com/user-attachments/assets/febb0b9c-0929-4af1-9ae6-be958e1a98cb)
+
 
 5. Show the number of regions in each continent, only if the number of regions is greater than 3.
 
@@ -56,6 +64,8 @@ FROM country
 GROUP BY Continent
 HAVING Number_of_Regions > 3;
 ````
+
+![image](https://github.com/user-attachments/assets/00afa374-1b3d-41a0-b176-4386a91e9ab0)
 
 
 6. Show the average GNP per region in Africa, sorted from highest.
@@ -70,6 +80,9 @@ ORDER BY Avg_GNP DESC;
 
 ````
 
+![image](https://github.com/user-attachments/assets/263b59d4-28e8-4d40-ad58-4df04487b716)
+
+
 7. Show countries in Europe whose names start with the letter 'I'.
 
 ````sql
@@ -77,8 +90,10 @@ SELECT  Name,
         Continent
 FROM country
 WHERE Continent='Europe' AND Name LIKE 'I%';
-
 ````
+
+![image](https://github.com/user-attachments/assets/e087a25f-3d57-49a3-a3ec-c60bfc0180eb)
+
 
 8. Show the number of languages spoken in each country, sorted by the number of languages.
 
@@ -90,13 +105,19 @@ GROUP BY CountryCode
 ORDER BY Number_of_Languages DESC;
 ````
 
-9. Show country names that have 6 letters and end with 'o'.
+![image](https://github.com/user-attachments/assets/66cc598f-df97-4afc-a1de-7d9e38172503)
+
+
+
+9. Show country names with 6 letters and end with 'o'.
 
 ````sql
 SELECT Name
 FROM country
 WHERE Name LIKE '_____o'; 
 ````
+
+![image](https://github.com/user-attachments/assets/79b7a85a-d30f-4197-8f59-721f2432f158)
 
 
 10. Show the 7 most spoken languages in Indonesia (rounded percentages). Rename headers.
@@ -110,6 +131,8 @@ ORDER BY Percentage
 DESC LIMIT 7;
 ````
 
+![image](https://github.com/user-attachments/assets/6b2f351d-65f1-4e60-8da4-e009bf706b4a)
+
 11. Show 10 countries that gained independence earliest (non-NULL values only).
 
 ````sql
@@ -119,6 +142,9 @@ WHERE IndepYear IS NOT NULL
 ORDER BY IndepYear
 LIMIT 10;
 ````
+
+![image](https://github.com/user-attachments/assets/40a6f99f-537f-46b5-a317-684c2cf61f3c)
+
 
 12. Show continents with fewer than 10 government forms.
 
@@ -130,6 +156,9 @@ FROM country
 GROUP BY Continent
 HAVING Number_of_Gov_Forms < 10;
 ````
+
+![image](https://github.com/user-attachments/assets/448dfc8f-4fdc-4dea-a817-69097abef181)
+
 
 13. Which regions have had a GNP increase? Sort by largest difference.
 
