@@ -1,4 +1,4 @@
-**Accessing the [world](https://dev.mysql.com/doc/world-setup/en/)** database
+**Accessing the [world](https://dev.mysql.com/doc/world-setup/en/) database**
 
 
 ````sql
@@ -137,7 +137,8 @@ DESC LIMIT 7;
 
 ````sql
 SELECT  Name,
-        IndepYear FROM country
+        IndepYear
+FROM country
 WHERE IndepYear IS NOT NULL
 ORDER BY IndepYear
 LIMIT 10;
@@ -171,8 +172,15 @@ HAVING Difference > 0
 ORDER BY Difference DESC;
 ````
 
+![image](https://github.com/user-attachments/assets/d3388ab0-ea34-4b73-a69e-669667d341c2)
 
-USE the sakila database
+
+**Accessing the [sakila](https://dev.mysql.com/doc/sakila/en/sakila-installation.html)** database
+
+````sql
+USE sakila;
+````
+
 14. Show actor(s) with first name 'Scarlett'.
 
 
@@ -181,16 +189,18 @@ SELECT *
 FROM actor
 WHERE first_name='SCARLETT';
 ````
+![image](https://github.com/user-attachments/assets/d1559ab9-b04c-4eb6-bb23-7923c9732bd6)
 
 
 
 15. How many unique last names are there among the actors?
 
-
 ````sql
 SELECT COUNT(DISTINCT last_name) AS Unique_Last_Names
 FROM actor;
 ````
+
+![image](https://github.com/user-attachments/assets/078547eb-3961-491d-abeb-c4da0716d872)
 
 
 16. Show the 5 last names that appear only once in the database.
@@ -205,6 +215,8 @@ HAVING Frequency = 1
 LIMIT 5;
 ````
 
+![image](https://github.com/user-attachments/assets/9cf45409-2836-49dc-9d8a-94fe2b7c2ae6)
+
 
 17. Show the 5 last names that appear more than once.
 
@@ -213,9 +225,14 @@ SELECT  last_name AS Last_Name,
         COUNT(last_name) AS Frequency
 FROM actor
 GROUP BY last_name
-HAVING Frequency != 1
+HAVING Frequency > 1
 LIMIT 5;
 ````
+
+![image](https://github.com/user-attachments/assets/463bb419-e087-46cc-8901-98d7ae1411db)
+
+
+
 
 18. Show full names (first and last) in uppercase in one column as 'Actor_Name'.
 
@@ -225,6 +242,8 @@ SELECT CONCAT(first_name,' ',last_name) AS Actor_Name
 FROM actor;
 ````
 
+![image](https://github.com/user-attachments/assets/2d8ebb99-eac3-410f-95dc-367944c0f947)
+
 
 19. Show the average film duration.
 
@@ -233,7 +252,7 @@ FROM actor;
 SELECT ROUND(AVG(length), 2) AS Avg_Duration
 FROM film;
 ````
-
+![image](https://github.com/user-attachments/assets/2ece6a85-e555-4858-a2b9-7e1b69dab1b9)
 
 20. Show all customer records from Indonesia with an odd phone number, sorted by postal code and ID.
 
@@ -245,9 +264,10 @@ WHERE country='Indonesia' AND phone%2 != 0
 ORDER BY 4, ID;
 ````
 
+![image](https://github.com/user-attachments/assets/5c03d536-552e-4d79-a6d6-b644c95adfd0)
+
 
 21. Show average monthly payment amounts, sorted from highest to lowest.
-
 
 
 ````sql
@@ -257,6 +277,8 @@ FROM payment
 GROUP BY MONTHNAME(payment_date)
 ORDER BY Avg_Payment DESC;
 ````
+
+![image](https://github.com/user-attachments/assets/b7fd7820-561a-4092-aad3-0640ed2a0e88)
 
 
 22. Show the 5 shortest films.
@@ -270,6 +292,8 @@ ORDER BY length
 LIMIT 5;
 ````
 
+![image](https://github.com/user-attachments/assets/4726fd07-6f8e-4501-ae88-60e97757ebd1)
+
 
 23. Show the number of films per rating, sorted from most to least.
 
@@ -282,6 +306,7 @@ GROUP BY rating
 ORDER BY Number_of_Films DESC;
 ````
 
+![image](https://github.com/user-attachments/assets/35182fd1-f081-4a2c-983b-3291382b9c42)
 
 
 24. Show average replacement cost per rental rate for films starting with 'Z'.
@@ -294,71 +319,20 @@ WHERE title LIKE 'Z%'
 GROUP BY rental_rate;
 ````
 
-
+![image](https://github.com/user-attachments/assets/35423484-2897-42a6-b7ad-a7b4d29ee90d)
 
 25. Show film ratings with average duration above 115 minutes.
 
-
 ````sql
 SELECT rating,
-      AVG(length) AS avg_duration
+      FORMAT(AVG(length), 2) AS avg_duration
 FROM film
 GROUP BY rating
 HAVING avg_duration > 115;
 ````
 
-
-
-USE purwadhika database
-
-26. From viewership table: count views by laptop vs mobile (tablet + phone). Output headers: 'laptop_views' and 'mobile_views'.
-
-````sql
-SELECT 
-    SUM(CASE WHEN device_type='laptop' THEN 1 ELSE 0 END) AS laptop_views,
-	  SUM(CASE WHEN device_type='phone' OR device_type='tablet' THEN 1 ELSE 0 END) AS mobile_views
-FROM viewership;
-
-````
-
-
-27. From employee_expertise: show employee IDs that meet SME conditions.
-SME =≥ 8 years in 1 domain OR ≥ 12 years in 2 domains.
-
-
-````sql
-SELECT employee_id 
-FROM employee_expertise 
-GROUP BY employee_id 
-HAVING (SUM(years_of_experience) >= 8 AND COUNT(DISTINCT domain) = 1) OR (SUM(years_of_experience) >= 12 AND COUNT(DISTINCT domain) = 2);
-````
+![image](https://github.com/user-attachments/assets/428a37cb-4eb3-48ab-891e-ce8a7cde10d9)
 
 
 
-28. From applepay_transactions: show total Apple Pay transaction volume per merchant, including merchants with 0.
-
-````sql
-SELECT  merchant_id,
-        SUM(CASE WHEN payment_method='Apple Pay' THEN transaction_amount ELSE 0 END) AS total_transaction
-FROM applepay_transactions
-GROUP BY merchant_id
-ORDER BY total_transaction DESC;
-````
-
-
-
-29. From tabel_nilai: add grade column based on final score.
-
-````sql
-SELECT *,
-CASE 
-	WHEN nilai_akhir >= 80 THEN 'A'
-	WHEN nilai_akhir >= 60 THEN 'B'
-	WHEN nilai_akhir >= 40 THEN 'C'
-	WHEN nilai_akhir >= 20 THEN 'D'
-	ELSE 'E'
-END AS grade_index
-FROM tabel_nilai;
-
-````
 
