@@ -9,6 +9,10 @@ A collection of SQL challenges and exercises in MySQL for data science teaching
 * Essential SQL Query (Filtering, grouping, aggregating, date functions) → [Open file](https://github.com/harishmuh/SQL_challenges/blob/main/Essential%20SQL%20-%20filtering%20-%20grouping%20%20-%20aggregating%20-%20date%20functions.sql)
 * Challenges: Intermediate SQL exercise in 'World' and 'sakila' database → [Open file](https://github.com/harishmuh/SQL_challenges/blob/main/Intermediate%20SQL_exercise.md)
 
-**Meeting 3: Advanced SQL Query**
-* Advanced SQL Query (Sub query and join) → [Open file](https://github.com/harishmuh/SQL_challenges/blob/main/Advanced%20sql_live%20class_eng.sql)
+**Meeting 3: Advanced SQL Query 1**
+* Advanced SQL Query concept (Sub query and join) → [Open file](https://github.com/harishmuh/SQL_challenges/blob/main/Advanced%20sql_live%20class_eng.sql)
 * Challenges: Advanced SQL exercise → [Open file](https://github.com/harishmuh/SQL_challenges/blob/main/advanced%20query%20-%20join%20and%20subquery%20-%20exercise.md)
+
+**Meeting 4: Advanced SQL Query 2**
+* Concept → [Open file]
+* Challenges: Advanced SQL exercise → [Open file]
