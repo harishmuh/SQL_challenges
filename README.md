@@ -10,9 +10,9 @@ A collection of SQL challenges and exercises in MySQL for data science teaching
 * Challenges: Intermediate SQL exercise in 'World' and 'sakila' database → [Open file](https://github.com/harishmuh/SQL_challenges/blob/main/Intermediate%20SQL_exercise.md)
 
 **Meeting 3: Advanced SQL Query 1**
-* Advanced SQL Query concept (Sub query and join) → [Open file](https://github.com/harishmuh/SQL_challenges/blob/main/Advanced%20sql_live%20class_eng.sql)
+* Advanced SQL Query (Sub query and join concept) → [Open file](https://github.com/harishmuh/SQL_challenges/blob/main/Advanced%20sql_live%20class_eng.sql)
 * Challenges: Advanced SQL exercise → [Open file](https://github.com/harishmuh/SQL_challenges/blob/main/advanced%20query%20-%20join%20and%20subquery%20-%20exercise.md)
 
 **Meeting 4: Advanced SQL Query 2**
-* Concept → [Open file]
+* Advanced SQL Query (Common Table Expression and Window function concept) → [Open file](https://github.com/harishmuh/SQL_challenges/blob/main/CTE_Windows_function.md)
 * Challenges: Advanced SQL exercise → [Open file]
