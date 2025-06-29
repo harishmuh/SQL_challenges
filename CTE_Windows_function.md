@@ -74,11 +74,7 @@ FROM film;
 
 ![image](https://github.com/user-attachments/assets/9411ae1c-564a-46bf-a2ae-6a1f6f843c27)
 
-![image](https://github.com/user-attachments/assets/5ea9f886-be7a-4281-9862-440d7d4d5402)
-
-![image](https://github.com/user-attachments/assets/9d75b2d4-a3cf-457b-8b7b-133c9346e7ae)
-
-![image](https://github.com/user-attachments/assets/1029a10b-9599-4821-ace4-21cf386f3de5)
+...
 
 ![image](https://github.com/user-attachments/assets/0e27acc0-8dcd-482b-82e4-46acbb979570)
 
@@ -175,6 +171,13 @@ Divide the films into 4 equal quartiles or 100 equal percentiles by duration.
 
 **Cumulative sum of amount**
 
+````sql
+SELECT 
+	amount,
+	SUM(amount) OVER(ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum
+FROM payment;
+````
+
 ![image](https://github.com/user-attachments/assets/2ca93799-f282-407f-bc70-97d5ee49d4a7)
 
 ...
@@ -182,6 +185,13 @@ Divide the films into 4 equal quartiles or 100 equal percentiles by duration.
 ![image](https://github.com/user-attachments/assets/59aa2b6a-b169-43cf-a6a2-53e39abd5c90)
 
 **Moving average over 2 rows**
+
+````sql
+SELECT
+	amount,
+	AVG(amount) OVER(ROWS BETWEEN 1 PRECEDING AND CURRENT ROW) AS moving_avg
+FROM payment;
+````
 
 ![image](https://github.com/user-attachments/assets/33d9d0df-31ea-4764-b16b-9b6af5dcedd5)
 
@@ -192,6 +202,19 @@ Divide the films into 4 equal quartiles or 100 equal percentiles by duration.
 *2-row moving average of the amount.
 
 **Cumulative sum of film counts by rating**
+
+````sql
+
+WITH cte AS
+	(SELECT 
+		rating, 
+		COUNT(title) AS film_count
+	FROM film
+	GROUP BY rating)
+SELECT *,
+	SUM(film_count) OVER(ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS cumulative_sum
+FROM cte;
+````
 
 ![image](https://github.com/user-attachments/assets/05384bfd-def0-4534-81ef-281e4ad31291)
 
