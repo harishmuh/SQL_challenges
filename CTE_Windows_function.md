@@ -170,3 +170,32 @@ FROM film;
 ![image](https://github.com/user-attachments/assets/f7d4f66e-4e46-4c44-bce1-1a3b3f85bdc7)
 
 Divide the films into 4 equal quartiles or 100 equal percentiles by duration.
+
+### **Sliding Window / Cumulative Sum / Moving Average**
+
+**Cumulative sum of amount**
+
+![image](https://github.com/user-attachments/assets/2ca93799-f282-407f-bc70-97d5ee49d4a7)
+
+...
+
+![image](https://github.com/user-attachments/assets/59aa2b6a-b169-43cf-a6a2-53e39abd5c90)
+
+**Moving average over 2 rows**
+
+![image](https://github.com/user-attachments/assets/33d9d0df-31ea-4764-b16b-9b6af5dcedd5)
+
+...
+
+![image](https://github.com/user-attachments/assets/1dfa5fef-8e07-48d2-9799-5da3c83c5da8)
+
+*2-row moving average of the amount.
+
+**Cumulative sum of film counts by rating**
+
+![image](https://github.com/user-attachments/assets/05384bfd-def0-4534-81ef-281e4ad31291)
+
+*Count how many films exist per rating, then compute the cumulative total of those counts across all rating groups.
+
+
+
