@@ -1,4 +1,4 @@
-Accessing the database Sakila
+Accessing the Sakila database
 
 ````sql
 USE sakila;
@@ -16,7 +16,7 @@ WHERE length > (SELECT AVG(length) FROM film);
 The USE of CTE
 * A CTE (Common Table Expression) is a temporary named result set that can be referred to within a SELECT, INSERT, UPDATE, or DELETE statement. It's declared before the main query and can be reused.
 
-Exercise: Create a temporary table avg_length to store the average film duration, then select all films longer than that average.
+Exercise: Create a temporary table, avg_length, to store the average film duration, then select all films longer than that average.
 
 ````sql
 WITH avg_length AS 
@@ -30,12 +30,12 @@ WHERE length > (SELECT * FROM avg_length);
 Same logic, but also display the average duration as a column in the results.
 
 CTE Use Case Example: 
-* Count of Countries per Continent and Show continents with more countries than North America
+* Count of Countries per Continent and show continents with more countries than North America
 
 Step
 * Count the number of countries in North America, and display all other continents that have more countries than that.
 
-Accessing world database
+Accessing the world database
 
 ````sql
 Use world;
@@ -60,9 +60,9 @@ HAVING country_count > (SELECT * FROM na_country_count);
 ## **window functions**
 
 What Are Window Functions?
-* These function allow aggregation without reducing the number of rows, unlike GROUP BY. Every row stays intact but gains new aggregated data.
+* These functions allow aggregation without reducing the number of rows, unlike GROUP BY. Every row stays intact but gains new aggregated data.
 
-Example: Please display average film duration for each rating
+Example: Please display the average film duration for each rating
 
 ````sql
 SELECT 
@@ -96,9 +96,9 @@ FROM film;
 ````
 
 ![image](https://github.com/user-attachments/assets/257715f3-2fb0-471f-b362-155b9a791473)
+*Number the films within each rating group starting from 1.
 
-
-Number the films within each rating group starting from 1. Limit to Top 5 Films per Rating.
+ Limit to Top 5 Films per Rating. Show only the top 5 films for each rating group.
 
 ````sql
 WITH cte AS 
@@ -116,9 +116,9 @@ WHERE row_number_ < 6;
 
 ### **RANK VS DENSE RANK**
 
-RANK(): gives same rank for equal values, but skips numbers.
+* RANK(): gives the same rank for equal values, but skips numbers.
 
-DENSE_RANK(): same rank for equal values, but does not skip.
+* DENSE_RANK(): same rank for equal values, but does not skip.
 
 Show only the top 5 films for each rating group.
 
@@ -133,7 +133,7 @@ FROM film;
 
 ![image](https://github.com/user-attachments/assets/0a9f42a5-2415-45f2-a2d0-3b8580f4030a)
 
-Problem: Show longest film per rating
+Problem: Show the longest film per rating
 
 ````sql
 WITH cte AS 
@@ -151,7 +151,17 @@ WHERE ranking = 1;
 
 For each rating, display the film(s) with the longest duration.
 
-NTILE for Grouping into Percentiles or Quartiles
+**NTILE for Grouping into Percentiles or Quartiles**
+
+````sql
+SELECT 
+	title, 
+	rating, 
+	length,
+	NTILE(4) OVER() AS quartile,
+	NTILE(100) OVER(ORDER BY length DESC) AS percentile
+FROM film;
+````
 
 ![image](https://github.com/user-attachments/assets/becb9a2f-06d3-4ddd-a2bc-38e97c21e011)
 
