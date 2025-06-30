@@ -3,6 +3,45 @@
 ## **Common Table Expression**
 * A CTE (Common Table Expression) is a temporary named result set that can be referred to within a SELECT, INSERT, UPDATE, or DELETE statement. It's declared before the main query and can be reused.
 
+**Database: employees**
+
+Please display a list of employees who were born in 1960. Please show columns: emp_no, first_name, birth_date. 
+
+Accessing database
+````sql
+USE employees;
+````
+
+With subquery:
+````sql
+SELECT emp_no, first_name, birth_date
+FROM (
+    SELECT emp_no, first_name, birth_date
+    FROM employees
+    WHERE YEAR(birth_date) = 1960
+) AS sub;
+````
+
+![image](https://github.com/user-attachments/assets/d163fff4-3ede-4028-b625-d7655c8bf1d2)
+
+
+
+With CTE:
+````sql
+WITH born_1960 AS (
+    SELECT emp_no, first_name, birth_date
+    FROM employees
+    WHERE YEAR(birth_date) = 1960
+)
+SELECT *
+FROM born_1960;
+````
+
+![image](https://github.com/user-attachments/assets/fe9f5943-e9e6-4e64-b4f0-622183cff137)
+
+
+**Database: sakila**
+
 Accessing the Sakila database
 
 ````sql
@@ -65,6 +104,7 @@ JOIN avg_length al ON f.length > al.rerata_durasi;
 
 Step:
 
+**Database: world**
 * Accessing the world database
 
 ````sql
