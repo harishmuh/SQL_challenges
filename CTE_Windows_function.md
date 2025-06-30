@@ -1,3 +1,8 @@
+# **Common Table Expression (CTE) and Window Function concept**
+
+## **Common Table Expression**
+* A CTE (Common Table Expression) is a temporary named result set that can be referred to within a SELECT, INSERT, UPDATE, or DELETE statement. It's declared before the main query and can be reused.
+
 Accessing the Sakila database
 
 ````sql
@@ -13,10 +18,7 @@ WHERE length > (SELECT AVG(length) FROM film);
 ![image](https://github.com/user-attachments/assets/f9c98164-2e0e-482f-8f9a-bd4dd4d0b1ef)
 
 
-The USE of CTE
-* A CTE (Common Table Expression) is a temporary named result set that can be referred to within a SELECT, INSERT, UPDATE, or DELETE statement. It's declared before the main query and can be reused.
-
-Exercise: Create a temporary table, avg_length, to store the average film duration, then select all films longer than that average.
+CTE Exercise: Create a temporary table, avg_length, to store the average film duration, then select all films longer than that average.
 
 ````sql
 WITH avg_length AS 
@@ -25,23 +27,67 @@ SELECT title, length FROM film
 WHERE length > (SELECT * FROM avg_length);
 ````
 
+The query below provides the same logic (using an implicit JOIN) and displays the average duration as a column in the results.
+
 ![image](https://github.com/user-attachments/assets/af91636e-9220-49db-bfb3-5c5606483146)
 
-Same logic, but also display the average duration as a column in the results.
+````sql
+WITH avg_length AS 
+	(SELECT AVG(length) AS avg_duration FROM film)
+SELECT title, length, avg_duration 
+FROM film f, avg_length al
+WHERE f.length > al.avg_duration;
+````
 
-CTE Use Case Example: 
+![image](https://github.com/user-attachments/assets/a611fe1b-d3f9-4dd0-b476-44633a475c63)
+
+
+The query below provides the same logic, but uses explicit JOIN.
+
+````sql
+WITH avg_length AS (
+    SELECT AVG(length) AS rerata_durasi
+    FROM film
+)
+SELECT f.title, f.length, al.rerata_durasi
+FROM film f
+JOIN avg_length al ON f.length > al.rerata_durasi;
+````
+
+![image](https://github.com/user-attachments/assets/48a05b84-9761-4811-897b-dc49dc46ab6e)
+
+
+
+
+
+**CTE Use Case Example** 
 * Count of Countries per Continent and show continents with more countries than North America
 
-Step
-* Count the number of countries in North America, and display all other continents that have more countries than that.
+Step:
 
-Accessing the world database
+* Accessing the world database
 
 ````sql
 Use world;
 ````
 
-CTE code
+* Calculate and display the number of countries in every continent
+
+````sql
+SELECT continent, COUNT(Name) AS Jumlah
+FROM country
+GROUP BY continent;
+````
+
+* Calculate the number of countries in the North American continent
+
+````sql
+SELECT COUNT(Name) AS Jumlah
+FROM country
+WHERE continent = 'North America';
+````
+
+* Combining both calculations into CTE 
 
 ````sql
 WITH na_country_count AS 
@@ -56,7 +102,22 @@ HAVING country_count > (SELECT * FROM na_country_count);
 
 ![image](https://github.com/user-attachments/assets/6a2f739d-dfa7-4bf8-95f6-40876d3c4728)
 
+The query below displays CTE + an implicit join + direct comparison with the country count of North America (NA)
 
+````sql
+WITH jumlah_negara_NA AS 
+	(SELECT COUNT(Name) AS country_count_NA
+	FROM country
+	WHERE continent = 'North America')
+SELECT continent, COUNT(name) as country_count, country_count_NA FROM country, jumlah_negara_NA
+GROUP BY 1, 3;
+````
+
+![image](https://github.com/user-attachments/assets/1be3cb83-5b40-4d87-8d50-2f138f8eefae)
+
+
+
+---
 ## **window functions**
 
 What Are Window Functions?
@@ -92,6 +153,7 @@ FROM film;
 ````
 
 ![image](https://github.com/user-attachments/assets/257715f3-2fb0-471f-b362-155b9a791473)
+
 *Number the films within each rating group starting from 1.
 
  Limit to Top 5 Films per Rating. Show only the top 5 films for each rating group.
